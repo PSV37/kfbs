@@ -80,7 +80,7 @@ if(!$mail->Send())
 
 }
 
-}
+} 
 else{
   ?><!DOCTYPE html>
 <html lang="en-US">
@@ -144,6 +144,7 @@ else{
                      <li><a href="#about-us">About Us</a></li>
                       <li><a href="#security">Security</a></li>
                      <li><a href="#latest-news">Pricing</a></li>
+                     <li><a href="#careers">Careers </a></li>
                      <li><a href="#services">Services</a></li>
                      <li><a href="#faq">FAQ</a></li>
                      <li><a href="#contact">Contact</a></li>
@@ -431,6 +432,38 @@ else{
           </div>
          </section>
 
+
+      <div id="careers">
+            <div class="line">
+               <h2 class="section-title">Careers</h2>
+               <div class="margin">
+                  <h3>Fill This Form</h3>
+                <form class="customform" method="POST" action="<?php $_PHP_SELF?>" role="form" enctype="multipart/form-data">
+                  <div class="s-12 m-12 l-5 hide-m hide-s margin-bottom right-align">
+                   <div class="s-12"><input  name="userEmail" id="userEmail" placeholder="Your e-mail" title="Your e-mail" type="email" required /></div>
+
+                   <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="Your mobile" title="Your e-mobile" type="number" required /></div>
+                      <label for='uploaded_file'>Upload Resume:</label>
+                    
+                    <input type="file" name="uploaded_file" required>
+                  </div>
+                  <div class="s-12 m-12 l-2 margin-bottom right-align">
+                
+
+                  </div>
+                  <div class="s-12 m-12 l-5">
+                      <div class="s-12"><textarea placeholder="Your message" name="inputContent" id="inputContent" rows="5" required></textarea></div>
+                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit" name="submitBtnC" id="submitBtnC">Submit</button></div>
+                   
+                  </div>
+               </div>
+                </form>
+            </div>
+         </div>
+
+
+
+
          <!-- CONTACT -->
          <div id="contact">
             <div class="line">
@@ -529,5 +562,105 @@ else{
    </body>
 </html>
 <?php
+}
+
+if(isset($_REQUEST["submitBtnC"])){
+
+$validation_errors =false;
+//Get the uploaded file information
+$name_of_uploaded_file =basename($_FILES['uploaded_file']['name']);
+
+//get the file extension of the file
+$type_of_uploaded_file =
+    substr($name_of_uploaded_file,
+    strrpos($name_of_uploaded_file, '.') + 1);
+
+$size_of_uploaded_file =
+    $_FILES["uploaded_file"]["size"]/1024;//size in KBs
+//Settings
+$max_allowed_file_size = 100; // size in KB
+$allowed_extensions = array("doc", "docx", "odt");
+
+//Validations
+if($size_of_uploaded_file > $max_allowed_file_size )
+{
+  $errors .= "\n Size of file should be less than $max_allowed_file_size";
+  $validation_errors =true;
+}
+
+//------ Validate the file extension -----
+$allowed_ext = false;
+for($i=0; $i<sizeof($allowed_extensions); $i++)
+{
+  if(strcasecmp($allowed_extensions[$i],$type_of_uploaded_file) == 0)
+  {
+    $allowed_ext = true;
+  }
+}
+
+if(!$allowed_ext)
+{
+  $errors .= " only types are supported: ".implode(',',$allowed_extensions);
+  $validation_errors =true;
+}
+
+$upload_folder='./upload_folder/';
+//copy the temp. uploaded file to uploads folder
+$path_of_uploaded_file = $upload_folder . $name_of_uploaded_file;
+$tmp_path = $_FILES["uploaded_file"]["tmp_name"];
+
+if(is_uploaded_file($tmp_path))
+{
+  if(!copy($tmp_path,$path_of_uploaded_file))
+  {
+    $errors .= '\n error  uploaded file';
+
+  }
+}
+
+$message =  new PHPMailer(true);
+
+
+    //Server settings
+                                 // Enable verbose debug output
+    $message->isSMTP();                                      // Set mailer to use SMTP
+    $message->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
+    $message->SMTPAuth = true;                               // Enable SMTP authentication
+    $message->Username = 'balajipastapure@gmail.com';                 // SMTP username
+    $message->Password = '9767281145';                           // SMTP password
+    $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $message->Port = 587;  
+                                      // TCP port to connect to
+
+  if(!$validation_errors){
+      //Recipients
+      $message->setFrom('balajipastapure@gmail.com', 'New Application');
+
+      $name= $_REQUEST["userEmail"];
+      $subject='New Application';
+      $email='balaji.pastapure007@gmail.com';
+      $content= $_REQUEST["inputContent"];
+      $mail->Subject = 'do-not reply';
+      $mail->ContentType = 'text/plain';
+      $mail->addAttachment($path_of_uploaded_file);
+      $mail->isHTML(false);
+      $mail->Body =  'Hello Admin !'."\n"." New Person uploaded resume , ".""."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
+                  ."\n\n\n\n\n"."";
+      // you may also use $mail->Body = file_get_contents('your_mail_template.html');
+
+      $mail->AddAddress ($email, $name);
+
+      // you may also use this format $mail->AddAddress ($recipient);
+
+      if(!$mail->Send())
+      {
+              $error_message = "Mailer Error: " . $mail->ErrorInfo;
+          echo $error_message;
+              //header('Location: error.php');
+      }
+     //delete files from servers
+      //unlink($path_of_uploaded_file);
+  }
+
 }
 ?>

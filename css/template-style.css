@@ -199,7 +199,7 @@ p.logo strong {
 	margin: 1.25em 0;
 	text-transform: uppercase;
 }
-#contact h4 {
+#contact #careers h4 {
     margin: 0 0 1.25em;
 }
 #features p {
@@ -457,13 +457,26 @@ a.tab-label:hover, a.tab-label.active-btn {
 }
 
 
-#contact {
+#contact  {
 	background: none repeat scroll 0 0 #fff;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 	padding: 6em 2em;
 	position: relative;
 	z-index: 2;
 }
+#careers {
+	background: none repeat scroll 0 0 #fff;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+	padding: 6em 2em;
+	position: relative;
+	z-index: 2;
+}
+
+#careers input, #careers textarea {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+	border-radius: 3px;
+}
+
 #contact input, #contact textarea {
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
 	border-radius: 3px;
@@ -472,25 +485,53 @@ form.customform button.color-btn {
 	height: auto;
 	margin-top: 0;
 }
-#contact h2 {
+#contact #careers h2 {
 	margin: 0 0 1.25em;
 }
-#contact h3 {
+#careers h2 {
+	margin: 0 0 1.25em;
+}
+#contact #careers h3 {
 	color: #92c500;
 	font-size: 1em;
 	font-weight: 700;
 	margin: 0 0 0.625em;
 	text-transform: uppercase;
 }
-#contact p {
+#careers h3 {
+	color: #92c500;
+	font-size: 1em;
+	font-weight: 700;
+	margin: 0 0 0.625em;
+	text-transform: uppercase;
+}
+#contact #careers  p {
 	font-size: 0.85em;
 	font-style: normal;
 	line-height: 2em;
 }
-#contact p strong {
+#careers  p {
+	font-size: 0.85em;
+	font-style: normal;
+	line-height: 2em;
+}
+#contact #careers p strong {
 	font-weight: 700;
 }
-#contact i {
+#careers p strong {
+	font-weight: 700;
+}
+#contact #careers i {
+	background: #e0e0e0 none repeat scroll 0 0;
+	border-radius: 30px;
+	color: #fff;
+	display: inline-block;
+	line-height: 26px;
+	margin: 0.625em;
+	text-align: center;
+	width: 26px;
+}
+#careers i {
 	background: #e0e0e0 none repeat scroll 0 0;
 	border-radius: 30px;
 	color: #fff;
