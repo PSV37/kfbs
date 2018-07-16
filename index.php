@@ -225,13 +225,28 @@ else{
       <div class="line">
         <div id="owl-demo2" class="owl-carousel owl-theme">
            <div class="item">
-            <img src="img/first.jpg" alt="kfbs banner first">  
+            <img src="img/slider/xero.png" alt="xerot">  
            </div>
            <div class="item">
-            <img src="img/second.jpg" alt="kfbs banner second">              
+            <img src="img/slider/quickbooks.png" alt="quickbooks">              
            </div>
            <div class="item">
-            <img src="img/third.jpg" alt="kfbs banner third">      
+            <img src="img/slider/myob.png" alt="myob scroll banner image kfbs">      
+           </div>
+           <div class="item">
+            <img src="img/slider/profile.png" alt="profile scroll banner image kfbs">  
+           </div>
+           <div class="item">
+            <img src="img/slider/caseware.png" alt="caseware scroll banner image kfbs">              
+           </div>
+           <div class="item">
+            <img src="img/slider/sage.png" alt="sage scroll banner image kfbs">      
+           </div>
+           <div class="item">
+            <img src="img/slider/class.png" alt="class scroll banner image kfbs">              
+           </div>
+           <div class="item">
+            <img src="img/slider/bgl.png" alt="bgl scroll banner image kfbs">      
            </div>
         </div>
         <div class="s-12 m-4 l-2 center"><a class="white-btn" href="#contact">Contact Us</a></div>
@@ -451,14 +466,16 @@ else{
 
       <div id="careers">
             <div class="line">
+              <br>
                <h2 class="section-title">Careers</h2>
                <div class="margin">
-                  <h3>Fill This Form</h3>
+                  <h3>Excited to join us! Please help us with your details</h3><br>
                 <form class="customform" method="POST" action="<?php $_PHP_SELF?>" role="form" enctype="multipart/form-data">
                   <div class="s-12 m-12 l-5 hide-m hide-s margin-bottom right-align">
+                    <div class="s-12"><input  name="userName" id="userName" placeholder="Firstame Lastname" title="Your Name" type="text" required /></div>
                    <div class="s-12"><input  name="userEmail" id="userEmail" placeholder="Your e-mail" title="Your e-mail" type="email" required /></div>
 
-                   <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="Your mobile" title="Your e-mobile" type="number" required /></div>
+                   <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="Your mobile" title="Your mobile" type="number" required /></div>
                       <label for='uploaded_file'>Upload Resume:</label>
                     
                     <input type="file" name="uploaded_file" required>
@@ -468,8 +485,8 @@ else{
 
                   </div>
                   <div class="s-12 m-12 l-5">
-                      <div class="s-12"><textarea placeholder="Your message" name="inputContent" id="inputContent" rows="5" required></textarea></div>
-                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit" name="submitBtnC" id="submitBtnC">Submit</button></div>
+                      <div class="s-12"><textarea placeholder="Brief About Yourself" name="inputContent" id="inputContent" rows="5" required></textarea></div>
+                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit" name="submitBtnC" id="submitBtnC">Send </button></div>
                    
                   </div>
                </div>
@@ -542,7 +559,7 @@ else{
             });
             var owl = $('#owl-demo2');
             owl.owlCarousel({
-        items:4,
+        items:6,
         loop:true,
         margin:10,
         autoplay:true,
@@ -637,37 +654,42 @@ $message =  new PHPMailer(true);
 
 
     //Server settings
-                                 // Enable verbose debug output
-    $message->isSMTP();                                      // Set mailer to use SMTP
+    //                              // Enable verbose debug output
+    // $message->isSMTP();                                      // Set mailer to use SMTP
+    // $message->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
+    // $message->SMTPAuth = true;                               // Enable SMTP authentication
+    // $message->Username = 'balajipastapure@gmail.com';                 // SMTP username
+    // $message->Password = '9767281145';                           // SMTP password
+    // $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    // $message->Port = 587;  
+    //                                   // TCP port to connect to
+
+     $message->isSMTP();                                      // Set mailer to use SMTP
     $message->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
     $message->SMTPAuth = true;                               // Enable SMTP authentication
-    $message->Username = 'balajipastapure@gmail.com';                 // SMTP username
-    $message->Password = '9767281145';                           // SMTP password
+    $message->Username = 'donotreply@kfbs.co.in';                 // SMTP username
+    $message->Password = 'L4>/35#PY8rKgPLf';                           // SMTP password
     $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $message->Port = 587;  
-                                      // TCP port to connect to
+    $message->Port = 587;    
 
   if(!$validation_errors){
       //Recipients
-      $message->setFrom('balajipastapure@gmail.com', 'New Application');
+      $message->setFrom('donotreply@kfbs.co.in');
 
-      $name= $_REQUEST["userEmail"];
-      $subject='New Application';
-      $email='balaji.pastapure007@gmail.com';
+      $name= $_REQUEST["userName"];
+      $email= $_REQUEST["userEmail"];
+      $mobile= $_REQUEST["inputmobile"];
       $content= $_REQUEST["inputContent"];
-      $mail->Subject = 'do-not reply';
-      $mail->ContentType = 'text/plain';
-      $mail->addAttachment($path_of_uploaded_file);
-      $mail->isHTML(false);
-      $mail->Body =  'Hello Admin !'."\n"." New Person uploaded resume , ".""."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
+      $message->Subject = $name.' has applied for a job '.'['.$email.']';
+      $message->ContentType = 'text/plain';
+      $message->addAttachment($path_of_uploaded_file);
+      $message->isHTML(false);
+      $message->Body =  'Hello Team!'."\n".$name." has applied for job, his/her resume is attached with this email ".""."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
                   ."\n\n\n\n\n"."";
-      // you may also use $mail->Body = file_get_contents('your_mail_template.html');
 
-      $mail->AddAddress ($email, $name);
+      $message->AddAddress ('sam.megatronix@gmail.com');
 
-      // you may also use this format $mail->AddAddress ($recipient);
-
-      if(!$mail->Send())
+      if(!$message->Send())
       {
               $error_message = "Mailer Error: " . $mail->ErrorInfo;
           echo $error_message;
