@@ -102,6 +102,7 @@ else{
       <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
       <script type="text/javascript" src="js/jquery-ui.min.js"></script>
       <script type="text/javascript" src="js/template-scripts.js"></script>
+
       <!-- seo-->
       <meta name="robots" content="noindex" />
 
@@ -209,7 +210,7 @@ else{
                   </div>
                </div>
             </div>
-         </div>
+		 </div>
          <!-- FIRST BLOCK -->
          <div id="first-block">
             <div class="line">
@@ -218,8 +219,23 @@ else{
                   we ask questions via email/Skype and then do the work as required. All of the work is reviewed by a CA.Cost benefit.
                   It is cheaper to hire an outsourced staff to do your bookkeeping / accounting than getting someone locally. Generally you will save as much as 50% of the cost to hire a bookkeeper locally than outsourcing it.
                    The output is of the same or even higher quality but cheaper which gives you more than what you are paying for.</p>
-                  <div class="s-12 m-4 l-2 center"><a class="white-btn" href="#contact">Contact Us</a></div>
+                  
             </div>
+			<div class="line"><br></div>
+			<div class="line">
+				<div id="owl-demo2" class="owl-carousel owl-theme">
+				   <div class="item">
+					  <img src="img/first.jpg" alt="kfbs banner first">  
+				   </div>
+				   <div class="item">
+					  <img src="img/second.jpg" alt="kfbs banner second">              
+				   </div>
+				   <div class="item">
+					  <img src="img/third.jpg" alt="kfbs banner third">      
+				   </div>
+				</div>
+				<div class="s-12 m-4 l-2 center"><a class="white-btn" href="#contact">Contact Us</a></div>
+			</div>
          </div>
 
 
@@ -370,7 +386,7 @@ else{
                       <i class="icon-xing_circle"></i>
                      <div class="service-text">
                        <h3>Accounting Services - Australia</h3>
-                       <p>We have deep expertise in providing accounting outsourcing services for the Australian firms. We provide accounting, bookkeeping, payroll, BAS return, financial analysis and tax preparation services.
+                       <p>We have deep expertise in providing accounting outsourcing services for the Australian firms. We provide accounting, bookkeeping, payroll, BAS return, superannuation, financial analysis and tax preparation services.
                           Most of our clients in Australia include accounting firms.</p>
                       </div>
                   </div>
@@ -526,13 +542,12 @@ else{
             });
             var owl = $('#owl-demo2');
             owl.owlCarousel({
-              nav: true,
-              dots: false,
-              items: 1,
-              loop: true,
-              navText: ["&#xf007","&#xf006"],
-              autoplay: true,
-              autoplayTimeout: 4000
+				items:4,
+				loop:true,
+				margin:10,
+				autoplay:true,
+				autoplayTimeout:1000,
+				autoplayHoverPause:false
             });
 
             // Custom Navigation Events
