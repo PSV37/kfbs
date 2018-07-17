@@ -418,6 +418,50 @@ a.tab-label:hover, a.tab-label.active-btn {
 	color: #fff;
 	font-size: 0.8em;
 }
+
+////
+
+#careers {
+	background: #1d5771 none repeat scroll 0 0;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+	padding: 6em 2em;
+}
+#careers h2 {
+	color: #fff;
+	margin: 0 0 1.25em;
+}
+#careers h2.section-title:after {
+	background: #fff none repeat scroll 0 0;
+}
+#careers i {
+	background: none repeat scroll 0 0 #fff;
+	border-radius: 80px;
+	color: #6f9600;
+	display: block;
+	float: left;
+	font-size: 1.8em;
+	height: 80px;
+	line-height: 80px;
+	margin-right: 0.625em;
+	text-align: center;
+	width: 80px;
+}
+.career-text {
+	display: table;
+	position: relative;
+}
+#careers h3 {
+	color: #fff;
+	font-size: 1em;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+#careers p {
+	color: #fff;
+	font-size: 0.8em;
+}
+
+//////
 #latest-news {
 	background: #f3f3f3 none repeat scroll 0 0;
 	box-shadow: 0px -10px 9px -11px rgba(0, 0, 0, 0.5);

@@ -80,6 +80,9 @@ if(!$mail->Send())
 
 }
 
+
+
+
 } 
 else{
   ?><!DOCTYPE html>
@@ -98,6 +101,7 @@ else{
       <!-- CUSTOM STYLE -->
       <!--  https://mfglabs.github.io/mfglabs-iconset/ -->
       <link rel="stylesheet" href="css/template-style.css">
+      <link rel="stylesheet" href="css/flowchart.css">
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
       <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
       <script type="text/javascript" src="js/jquery-ui.min.js"></script>
@@ -264,12 +268,14 @@ else{
                     <a class="tab-label active-btn">Softwares We Use</a>
                     <div class="tab-content">
                       <div class="margin">
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/xero.png" alt="xero"></a></div>
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/quickbooks.png" alt="quickbooks"></a></div>
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/myob.png" alt="myob"></a></div>
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/profile.png" alt="profile"></a></div>
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/caseware.png" alt="Case Ware"></a></div>
-                        <div class="s-12 m-6 l-4"><a class="our-work-container lightbox margin-bottom"><img src="img/sage.png" alt="SAGE"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/xero.png" alt="xero"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/quickbooks.png" alt="quickbooks"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/myob.png" alt="myob"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/profile.png" alt="profile"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/caseware.png" alt="Case Ware"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/sage.png" alt="SAGE"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/bgl.png" alt="Case Ware"></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><img src="img/logos/class.png" alt="SAGE"></a></div>
                       </div>
                     </div>
                   </div>
@@ -443,6 +449,47 @@ else{
             </div>
          </div>
 
+    
+           <div class="timeline">
+            <div class="container left1">
+              <div class="content">
+                <h2>2017</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+            <div class="container right1">
+              <div class="content">
+                <h2>2016</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+            <div class="container left1">
+              <div class="content">
+                <h2>2015</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+            <div class="container right1">
+              <div class="content">
+                <h2>2012</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+            <div class="container left1">
+              <div class="content">
+                <h2>2011</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+            <div class="container right1">
+              <div class="content">
+                <h2>2007</h2>
+                <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+              </div>
+            </div>
+          </div>
+  
+
          <section id="faq">
           <div id="features">
             <div class="line">
@@ -464,7 +511,7 @@ else{
          </section>
 
 
-      <div id="careers">
+      <div id="careers" style="background: #1d5771 none repeat scroll 0 0;">
             <div class="line">
               <br>
                <h2 class="section-title">Careers</h2>
@@ -475,8 +522,8 @@ else{
                     <div class="s-12"><input  name="userName" id="userName" placeholder="Firstame Lastname" title="Your Name" type="text" required /></div>
                    <div class="s-12"><input  name="userEmail" id="userEmail" placeholder="Your e-mail" title="Your e-mail" type="email" required /></div>
 
-                   <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="Your mobile" title="Your mobile" type="number" required /></div>
-                      <label for='uploaded_file'>Upload Resume:</label>
+                   <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="9034950501" title="Your mobile" type="number" required /></div>
+                      <h3>Upload Resume:</h3>
                     
                     <input type="file" name="uploaded_file" required>
                   </div>
@@ -486,13 +533,15 @@ else{
                   </div>
                   <div class="s-12 m-12 l-5">
                       <div class="s-12"><textarea placeholder="Brief About Yourself" name="inputContent" id="inputContent" rows="5" required></textarea></div>
-                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit" name="submitBtnC" id="submitBtnC">Send </button></div>
+                      <div class="s-12 m-4 l-2 "><a class="white-btn" type="submit" name="submitBtnC" id="submitBtnC">Send</a></div>
                    
                   </div>
                </div>
                 </form>
             </div>
          </div>
+       </div>
+
 
 
 
