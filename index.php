@@ -517,7 +517,7 @@ else{
                <h2 class="section-title">Careers</h2>
                <div class="margin">
                   <h3>Excited to join us! Please help us with your details</h3><br>
-                <form class="customform" method="POST" action="<?php $_PHP_SELF?>" role="form" enctype="multipart/form-data">
+                <form class="customform" id="customform" method="POST" action="<?php $_PHP_SELF?>" role="form" enctype="multipart/form-data">
                   <div class="s-12 m-12 l-5 hide-m hide-s margin-bottom right-align">
                     <div class="s-12"><input  name="userName" id="userName" placeholder="Firstame Lastname" title="Your Name" type="text" required /></div>
                    <div class="s-12"><input  name="userEmail" id="userEmail" placeholder="Your e-mail" title="Your e-mail" type="email" required /></div>
@@ -525,15 +525,15 @@ else{
                    <div class="s-12"><input  name="inputmobile" id="inputmobile" placeholder="9034950501" title="Your mobile" type="number" required /></div>
                       <h3>Upload Resume:</h3>
                     
-                    <input type="file" name="uploaded_file" required>
+                    <input type="file" name="uploaded_file" id="uploaded_file" required>
                   </div>
                   <div class="s-12 m-12 l-2 margin-bottom right-align">
                 
 
                   </div>
                   <div class="s-12 m-12 l-5">
-                      <div class="s-12"><textarea placeholder="Brief About Yourself" name="inputContent" id="inputContent" rows="5" required></textarea></div>
-                      <div class="s-12 m-4 l-2 "><a class="white-btn" type="submit" name="submitBtnC" id="submitBtnC">Send</a></div>
+                      <div class="s-12"><textarea placeholder="Brief About Yourself" name="inputContentC" id="inputContentC" rows="5" required></textarea></div>
+                      <div class="s-12 m-4 l-2 "><input class="white-btn" type="submit" name="submitBtnC" id="submitBtnC" value="Send"></div>
                    
                   </div>
                </div>
@@ -750,3 +750,47 @@ $message =  new PHPMailer(true);
 
 }
 ?>
+
+<script type="text/javascript">
+  
+ $("#customform").on('submit', function(e){
+  e.preventDefault();
+     e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'upload.php',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            beforeSend: function(){
+                $('.submitBtn').attr("disabled","disabled");
+                $('#fupForm').css("opacity",".5");
+            },
+            success: function(msg){
+                $('.statusMsg').html('');
+                if(msg == 'ok'){
+                    $('#fupForm')[0].reset();
+                    $('.statusMsg').html('<span style="font-size:18px;color:#34A853">Form data submitted successfully.</span>');
+                }else{
+                    $('.statusMsg').html('<span style="font-size:18px;color:#EA4335">Some problem occurred, please try again.</span>');
+                }
+                $('#fupForm').css("opacity","");
+                $(".submitBtn").removeAttr("disabled");
+            }
+        });
+  
+    
+    //file type validation
+    $("#uploaded_file").change(function() {
+        var file = this.files[0];
+        var imagefile = file.type;
+        var match= ["image/jpeg","image/png","image/jpg"];
+        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))){
+            alert('Please select a valid image file (JPEG/JPG/PNG).');
+            $("#file").val('');
+            return false;
+        }
+    });
+});
+</script>
