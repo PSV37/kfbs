@@ -594,3 +594,17 @@ footer p, footer a:visited, footer a, footer a:hover {
   	text-align: center;
   }
 }
+
+#message{
+    color: wheat;
+    margin-bottom: 3%;
+    font-size: 20px;
+    margin-top: -30px;
+    margin-left: 38%;
+}
+
+#careers i{
+	margin: -80px 59px;
+	font-size: 24px;
+	background: no-repeat;
+}

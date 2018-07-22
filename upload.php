@@ -58,30 +58,30 @@ if(is_uploaded_file($tmp_path))
 	$message =  new PHPMailer(true);
     //Server settings
                                  // Enable verbose debug output
-    $message->isSMTP();                                      // Set mailer to use SMTP
-	$message->SMTPSecure = 'tls';
-	$message->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+/*    $message->isSMTP();                                      // Set mailer to use SMTP
+  	$message->SMTPSecure = 'tls';
+	  $message->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
     $message->SMTPAuth = true;                               // Enable SMTP authentication
     $message->Username = 'balajipastapure@gmail.com';                 // SMTP username
-    $message->Password = '9767281145';                           // SMTP password
+    $message->Password = '9767281145';     */                      // SMTP password
                            // Enable TLS encryption, `ssl` also accepted
-    $message->Port = 587;  
+   // $message->Port = 587;  
                                       // TCP port to connect to
 
-/*     $message->isSMTP();                                      // Set mailer to use SMTP
+     $message->isSMTP();                                      // Set mailer to use SMTP
     $message->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
     $message->SMTPAuth = true;                               // Enable SMTP authentication
     $message->Username = 'donotreply@kfbs.co.in';                 // SMTP username
     $message->Password = 'L4>/35#PY8rKgPLf';                           // SMTP password
     $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $message->Port = 587;    */
+    $message->Port = 587;    
 
   if(!$validation_errors){
       //Recipients
-      $message->setFrom('balajipastapure@gmail.com');
+      $message->setFrom('info@kfbs.co.in');
 
-      $name= 'sss';
-      $email1='balaji.pastapure007@gmail.com';
+      $name=  $_REQUEST["userName"];
+      $email1=$_REQUEST["userEmail"];
       $mobile= $_REQUEST["inputmobile"];
       $content= $_REQUEST["inputContentC"];
       $message->Subject = $name.' has applied for a job '.'['.$email1.']';
@@ -91,7 +91,7 @@ if(is_uploaded_file($tmp_path))
       $message->Body =  'Hello Team!'."\n".$name." has applied for job, his/her resume is attached with this email ".""."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
                   ."\n\n\n\n\n"."";
 
-      $message->AddAddress ($email1, $name);
+      $message->AddAddress ('info@kfbs.co.in', $name);
       $responce=[];
       if(!$message->Send())
       {

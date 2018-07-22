@@ -98,6 +98,7 @@ else{
       <link rel="stylesheet" href="owl-carousel/owl.theme.css">
       <meta name="theme-color" content="#003366" />
       <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <!-- CUSTOM STYLE -->
       <!--  https://mfglabs.github.io/mfglabs-iconset/ -->
       <link rel="stylesheet" href="css/template-style.css">
@@ -515,6 +516,7 @@ else{
             <div class="line">
               <br>
                <h2 class="section-title">Careers</h2>
+               <div id="message"></div>
                <div class="margin">
                   <h3>Excited to join us! Please help us with your details</h3><br>
                 <form class="customform" id="customform" method="POST" action="<?php $_PHP_SELF?>" role="form" enctype="multipart/form-data">
@@ -533,10 +535,12 @@ else{
                   </div>
                   <div class="s-12 m-12 l-5">
                       <div class="s-12"><textarea placeholder="Brief About Yourself" name="inputContentC" id="inputContentC" rows="5" required></textarea></div>
-                      <div class="s-12 m-4 l-2 "><input class="white-btn" type="submit" name="submitBtnC" id="submitBtnC" value="Send"></div>
+                      <div class="s-12 m-4 l-2 ">
+                        <input class="white-btn" type="submit" style="cursor: pointer" name="submitBtnC" id="submitBtnC" value="Send"> <i class="fa fa-refresh fa-spin " id="notify_success"></i>                     
+                      </div>
                    
                   </div>
-               </div>
+                   </div>
                 </form>
             </div>
          </div>
@@ -596,6 +600,7 @@ else{
       <script type="text/javascript" src="owl-carousel/owl.carousel.js"></script>
       <script type="text/javascript">
          jQuery(document).ready(function($) {
+            $('#notify_success').hide();
             var theme_slider = $("#owl-demo");
             var owl = $('#owl-demo');
             owl.owlCarousel({
@@ -754,6 +759,7 @@ $message =  new PHPMailer(true);
 <script type="text/javascript">
   
  $("#customform").on('submit', function(e){
+
   e.preventDefault();
      e.preventDefault();
         $.ajax({
@@ -763,21 +769,27 @@ $message =  new PHPMailer(true);
             contentType: false,
             cache: false,
             processData:false,
+
             beforeSend: function(){
                 $('.submitBtn').attr("disabled","disabled");
                 $('#fupForm').css("opacity",".5");
+                $('#notify_success').show();
+                $("#submitBtnC").attr("disabled", true);
             },
             success: function(msg){
                 $('.statusMsg').html('');
-                if(msg == 'ok'){
-                    $('#fupForm')[0].reset();
-                    $('.statusMsg').html('<span style="font-size:18px;color:#34A853">Form data submitted successfully.</span>');
-                }else{
-                    $('.statusMsg').html('<span style="font-size:18px;color:#EA4335">Some problem occurred, please try again.</span>');
-                }
+                
+                $('#message').fadeIn().html('Form data submitted successfully.');
+                  setTimeout(function() {
+                  $('#message').fadeOut("slow");
+                }, 4000 );
+                $('#notify_success').hide();
+                $("#submitBtnC").attr("disabled", false);
                 $('#fupForm').css("opacity","");
                 $(".submitBtn").removeAttr("disabled");
-            }
+            },
+
+            //complete: function() { $('#notify_success').hide(); }
         });
   
     
