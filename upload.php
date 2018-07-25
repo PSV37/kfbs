@@ -5,6 +5,9 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
+
+
+
 if(!empty($_POST['userName']) || !empty($_POST['userEmail']) || !empty($_FILES['file']['inputContentC'])){
 
 $errors ='';
@@ -63,22 +66,23 @@ if(is_uploaded_file($tmp_path))
 	  $message->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
     $message->SMTPAuth = true;                               // Enable SMTP authentication
     $message->Username = 'balajipastapure@gmail.com';                 // SMTP username
-    $message->Password = '9767281145';     */                      // SMTP password
+    $message->Password = '9767281145';                           // SMTP password
                            // Enable TLS encryption, `ssl` also accepted
-   // $message->Port = 587;  
+    $message->Port = 587;  */
                                       // TCP port to connect to
 
      $message->isSMTP();                                      // Set mailer to use SMTP
+         $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $message->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
     $message->SMTPAuth = true;                               // Enable SMTP authentication
     $message->Username = 'donotreply@kfbs.co.in';                 // SMTP username
     $message->Password = 'L4>/35#PY8rKgPLf';                           // SMTP password
-    $message->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+
     $message->Port = 587;    
 
   if(!$validation_errors){
       //Recipients
-      $message->setFrom('info@kfbs.co.in');
+      $message->setFrom('donotreply@kfbs.co.in');
 
       $name=  $_REQUEST["userName"];
       $email1=$_REQUEST["userEmail"];
@@ -91,7 +95,7 @@ if(is_uploaded_file($tmp_path))
       $message->Body =  'Hello Team!'."\n".$name." has applied for job, his/her resume is attached with this email ".""."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
                   ."\n\n\n\n\n"."";
 
-      $message->AddAddress ('info@kfbs.co.in', $name);
+      $message->AddAddress ('balaji.pastapure007@gmail.com', $name);
       $responce=[];
       if(!$message->Send())
       {
@@ -101,8 +105,56 @@ if(is_uploaded_file($tmp_path))
           $responce['msg']='somthing went wrong ';
               //header('Location: error.php');
       }else{
-      	  $responce['status']=true;
-          $responce['msg']='Thnank You !!!!';
+
+
+
+
+$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+
+    //Server settings
+                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Host = 'smtp.zoho.com';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'donotreply@kfbs.co.in';                 // SMTP username
+    $mail->Password = 'L4>/35#PY8rKgPLf';                           // SMTP password
+    $mail->Port = 587;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setFrom('donotreply@kfbs.co.in', 'kfbs.co.in');
+
+
+    $name=  $_REQUEST["userName"];
+    $email=$_REQUEST["userEmail"];
+    $mobile= $_REQUEST["inputmobile"];
+    $content= $_REQUEST["inputContentC"];
+    $mail->Subject = 'do-not reply';
+    $mail->ContentType = 'text/plain';
+    $mail->isHTML(false);
+    $mail->Body =  'Hello '.$name."!"."\n"."Thank you, for writing to us. This is a confirmation email that we have received your query and will get back to you soonest."."\n\n"."~~~~ Your Query ~~~~"."\n\n".$content."\n\n"."~~~~~~~~~~~~~~~~~~"."\n\n\n".'Sincerely'."\n"."Team Kfbs.co.in"
+                ."\n\n\n\n\n"."****Please do not reply to this email as this email is sent from an unattended email address****";
+// you may also use $mail->Body = file_get_contents('your_mail_template.html');
+
+    $mail->AddAddress ($email, $name);
+
+    // you may also use this format $mail->AddAddress ($recipient);
+
+          if(!$mail->Send())
+          {
+              $error_message = "Mailer Error: " . $message->ErrorInfo;
+             //echo  $error_message;
+              $responce['status']=false;
+              $responce['msg']='somthing went wrong ';
+          }else{
+
+              $responce['status']=true;
+              $responce['msg']='Thnank You !!!!';
+              $base_directory = '/upload_folder/';
+              //if we want to delete files from serve 
+              //unlink($base_directory.$_FILES['uploaded_file']['name']);
+          }
+
       }
 
       echo json_encode($responce);
